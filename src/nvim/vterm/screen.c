@@ -414,6 +414,9 @@ static int settermprop(VTermProp prop, VTermValue *val, void *user)
   VTermScreen *screen = user;
 
   switch (prop) {
+  case VTERM_PROP_TITLE:
+  case VTERM_PROP_ICONNAME:
+    return 1;
   case VTERM_PROP_ALTSCREEN:
     if (val->boolean && !screen->buffers[BUFIDX_ALTSCREEN]) {
       return 0;
