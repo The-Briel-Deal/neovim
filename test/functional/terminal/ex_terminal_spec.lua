@@ -49,6 +49,24 @@ describe(':terminal', function()
     ]])
   end)
 
+  it('does not crash on zoomout with large output #30374', function()
+    skip(is_os('win'))
+
+    feed([[:terminal<cr>]])
+    -- Start terminal smaller.
+    screen:try_resize(100, 100)
+    command('call jobresize(b:terminal_job_id, 100, 100)')
+
+    -- Generate very wide output.
+    feed("ifor i in $(seq 1 1000); do echo -n $i; done\r\n")
+
+    -- Make terminal big.
+    screen:try_resize(2000, 2000)
+    command('call jobresize(b:terminal_job_id, 2000, 2000)')
+
+    assert_alive()
+  end)
+
   it('reads output buffer on terminal reporting #4151', function()
     skip(is_ci('cirrus') or is_os('win'))
     if is_os('win') then
