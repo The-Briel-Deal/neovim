@@ -1245,6 +1245,44 @@ it('win_update redraws lines properly', function()
   }
 end)
 
+it('does not crash #34329', function()
+  local a =
+  [[aaaa,aaaaaaaa,aaaaaaaaaa,aaaaaaa,aaaaaaa,aaaaaaaaa,aaaaaaaaaaa,aaaaaaaa,aaaaaaaa,aaaaaaaaa,aaaaaaaaaaa,aaaaaaaa,aaaaaaaa,aaaaaaaaaaaaaaaaaaa,aaaaaaaaaaaaaaaaa,aaaa
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaaa,aaaa.aaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaa.aaaaaaaaaaaaaa,aaa.aaaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,"aa,aa,aa,aa,aa,aa,aa,aa,aa,aa,a,a"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaaa,aaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaaaa.aaaaaaaaaaa,aaaaaa.aaaaaaaaaa,aaa.aaaaaaaaaaaa,aaa.aaaaaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaa.aaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aaa.aaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,"aa,aa,aa,aa,aa,aa,aa,aa,aa,aa,aa,a"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaaa,aaaaaa.aaaaaaaaaaa,aaaaaa.aaaaaaaaa,aaaaaa.aaaaaaaaaaa,aaaaaa.aaaaaaaaaa,aaaaaa.aaaaaaaaaaa,aaaaaa.aaaaaaaaaaa,aaaaaa.aaaaaaaaa,aaaaaa.aaaaaaaaaa,aa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aa.aaaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,a.aaaaaaaaaaaaaaa,"a,aa,aa,aa,aa,aa,aa,aa,aa,aa,aa,aa"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaaa,aaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaaaa.aaaaaaaaaa,aaaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaaaa.aaaaaaaaaa,aaaaaa.aaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,a.aaaaaaaaaaaaaaa,"a,a,aa,aa,aa,aa,aa,aa,aa,aa,aa,aa"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaa,aaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,a.aaaaaaaaaaaaaaa,"a,a,a,aa,aa,aa,aa,aa,aa,aa,aa,aa"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaa,aaaa.aaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaa,aaaa.aaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aaaa.aaaaaaaaaaa,a.aaaaaaaaaaaaaaa,"aa,a,a,a,a,a,a,a,aa,a,a,a"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaa,aaaa.aaaaaaaaaaaa,aaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,a.aaaaaaaaaaaaaaa,"aa,aa,aa,aa,aa,a,a,a,a,a,a,a"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaa,aaaa.aaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,a.aaaaaaaaaaaaaaa,"aa,aa,aa,aa,aa,aa,a,a,a,a,a,a"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaa,aaaa.aaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaa.aaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaa,a.aaaaaaaaaaaaaaa,"aa,aa,aa,aa,aa,aa,aa,a,a,a,a,a"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaa,aaaa.aaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaa.aaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaaa,a.aaaaaaaaaaaaaaa,"aa,aa,aa,aa,aa,aa,aa,aa,a,a,a,a"
+aaaaaaa-aaaaaaaaa-aaaaaa-aaa-aaa-aaaa,aaaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaaa,aaaaa.aaaaaaaaaaaa,aaaaa.aaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaa.aaaaaaaaaaaaa,aaaa.aaaaaaaaaaa,aa.aaaaaaaaaaaaa,aa.aaaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,aaaa.aaaaaaaaaaaa,aa.aaaaaaaaaaaaaa,"aa,aa,aa,aa,aa,aa,aa,aa,aa,a,a,a"]]
+  local b =
+  [[bbbb,bbbbbbbb,bbbbbbbbbb,bbbbbbb,bbbbbbb,bbbbbbbbb,bbbbbbbbbbb,bbbbbbbb,bbbbbbbb,bbbbbbbbb,bbbbbbbbbbb,bbbbbbbb,bbbbbbbb,bbbbbbbbbbbbbbbbbbb,bbbbbbbbbbbbbbbbb,bbbb
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbbb,bbbb.bbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,"bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,b,b"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbbb,bbbbb.bbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,"bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,b"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbbb,bbbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbb,bbbbbb.bbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,b.bbbbbbbbbbbbbbbb,"b,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbbb,bbbbb.bbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bbbbbb.bbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,b.bbbbbbbbbbbbbbbb,"b,b,bb,bb,bb,bb,bb,bb,b,bb,bb,bb"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbb,bbbbb.bbbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbb.bbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,b.bbbbbbbbbbbbbbb,"b,b,b,b,b,b,bb,b,b,b,bb,bb"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbb,bbbb.bbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbb.bbbbbbbbbbbb,bbbb.bbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,b.bbbbbbbbbbbbbbbb,"b,b,b,b,b,b,b,b,b,b,b,b"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbb,bbbb.bbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbbb.bbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,b.bbbbbbbbbbbbbb,"bb,bb,bb,bb,bb,b,b,b,b,b,b,b"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbb,bbbb.bbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbb.bbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,b.bbbbbbbbbbbbbbb,"bb,bb,bb,bb,bb,bb,b,b,b,b,b,b"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbb,bbbb.bbbbbbbbbbbb,bbb.bbbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bbbb.bbbbbbbbbbbb,b.bbbbbbbbbbbbbbb,"bb,bb,bb,bb,bb,bb,bb,b,b,b,b,b"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbb,bbbb.bbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbbbb.bbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,b.bbbbbbbbbbbbbbb,"bb,bb,bb,bb,bb,bb,bb,bb,b,b,b,b"
+bbbbbbb-bbbbbbbbb-bbbbbb-bbb-bbb-bbbb,bbbb.bbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbbbb.bbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbbbb,bbb.bbbbbbbbbbbb,bbb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,bb.bbbbbbbbbbbbbb,bbbb.bbbbbbbbbbbbb,bb.bbbbbbbbbbbbbbb,"bb,bb,bb,bb,bb,bb,bb,bb,bb,b,b,b"]]
+
+  WriteDiffFiles(a, b)
+
+  exec([[
+    set dip+=algorithm:histogram,inline:char
+  ]])
+  exec([[diff Xdifile1 Xdifile2]])
+
+  n.assert_alive()
+end)
+
 -- oldtest: Test_diff_rnu()
 it('diff updates line numbers below filler lines', function()
   local screen = Screen.new(40, 14)
